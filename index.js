@@ -32,9 +32,9 @@ let find = e.indexOf(`t`)
 console.log({find});
 
 let f = "adalab"
-let delete2 = f.substr(0,2);
+let delete2 = f.substring(2);
 console.log({delete2});
 
 let g = "adalab"
-let deleteLast2 = g.substr(-2)
+let deleteLast2 = g.substring(0, g.length-2)
 console.log({deleteLast2});
