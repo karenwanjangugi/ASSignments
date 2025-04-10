@@ -1,6 +1,6 @@
-const { log } = require("console");
 
-function stringLength(arr){
+
+function stringLength(array){
     const stringLength = arr.map(str => str.Length);
     return stringLength;
 
@@ -8,7 +8,7 @@ function stringLength(arr){
 let string = ["cat","goat","cow"]
 console.log({stringLength});
 
-function filterEven(arr){
+function filterEven(array){
 
     const evenNums = evenNums.filter(num => num%2===0);
 
@@ -19,10 +19,9 @@ console.log({evenNums});
 
 function topStudents(students){
     const topStudents = students.filter(student => student.score > 75)
-    .map()
+ 
 }
 
-console.log({topStudents});
 
 
 function squareOfNumbers(arr){
