@@ -130,6 +130,8 @@ function Employee(name,position,salary){
         new User("Reno" ,"reno@gmail.com",false)
         
     ]
+
+    users.map(user)
     
 
 
@@ -144,8 +146,8 @@ function Employee(name,position,salary){
     function destinations(){
         let destinationsFound = destinationObjects.filter(destination =>
             destination.distance <= 100 && destination.budgetRequired <= 800
-        ) 
-        console.log(destinationsFound);
+         ) 
+      
         
 
         if (destinationsFound.length > 0){
