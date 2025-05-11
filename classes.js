@@ -108,12 +108,40 @@ const free = new Timelog (
 // //You are developing a startup’s order management system where an Order constructor function should contain customer (object with 
 // //name and email), items (array of objects with productName, quantity, and unitPrice), and status (string), then implement prototype methods 
 // //to compute total cost, update order status based on payment, and categorize order urgency using switch and conditional statements.
-// function Order(customer,items,status){
-//   this.customer = customer
-//   this.items = items
-//   this.status = status
+function Order(customer,items,status){
+  this.customer = customer
+  this.items = items
+  this.status = status
 
-// }
+}
+
+Order.prototype.computeTotalCost = function(){
+  return this.items
+}
+
+Order.prototype.updateOrderStatus = function(){
+  if(this.status.includes("successful")){
+    console.log("hhh");
+  }
+  else{
+    console.log("kk");
+    
+  }
+
+}
+
+Order.prototype.categorize = function(){
+
+}
+const order = new Order(
+  {name: "Lloyd", email: "Lloyd@gmail.com"},
+  [{productName: "butter", quantity: 20, unitPrice: 200},
+    {productName: "butter", quantity: 20, unitPrice: 200},
+    {productName: "butter", quantity: 20, unitPrice: 200},
+    {productName: "butter", quantity: 20, unitPrice: 200},
+
+  ]
+)
 
 // //In a startup’s employee review tool, design an Employee class with properties: id (number), name (string), performanceMetrics 
 // //(object with keys like communication, efficiency, and reliability), and feedback (array of strings), then use prototypes to 
@@ -203,8 +231,8 @@ Course.prototype.completed = function(){
   return this.students.filter(student =>student.completionStatus === true)
 
 }
-Course.prototype.enrolled = function(){
-return this.students.filter(Course => this.instructor.expertise === "calculus").length
+Course.prototype.enrolled = function(expertise){
+return this.students.filter(Course => this.instructor.expertise === expertise).length
 }
 Course.prototype.message = function(){
   if(this.students.length > 5){
@@ -217,7 +245,7 @@ Course.prototype.message = function(){
 
 const studentCourses = [
   new Course(
-  "mathematics",
+  "Mathematics",
   {name: "Mr.John", expertise: "calculus"},
   [
   {name: "Joy", completionStatus: true },
@@ -228,8 +256,8 @@ const studentCourses = [
 
 ),
 new Course(
-  "English",
-  {name: "Mrs.Jane", expertise: "literature"},
+  "Mathematics",
+  {name: "Mrs.Jane", expertise: "analytical"},
   [
   {name: "Joy", completionStatus: true },
   {name: "Andrews", completionStatus: false },
@@ -239,8 +267,8 @@ new Course(
   {name: "Andrea", completionStatus: false }
 ]),
 new Course(
-  "Science",
-  {name: "Mr.James", expertise: "biology"},
+  "Mathematics",
+  {name: "Mr.James", expertise: "algebra"},
   [
   {name: "Joy", completionStatus: true },
   {name: "Andrews", completionStatus: false },
@@ -251,6 +279,6 @@ new Course(
 // studentCourse.completed()
 
 studentCourses.forEach(courses => console.log(courses.completed()));
-studentCourses.forEach(courses => console.log(courses.enrolled()));
+studentCourses.forEach(courses => console.log(courses.enrolled("calculus")));
 studentCourses.forEach(courses => console.log(courses.message()));
 // console.log(studentCourses.enrolled());
