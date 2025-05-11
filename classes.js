@@ -116,33 +116,62 @@ function Order(customer,items,status){
 }
 
 Order.prototype.computeTotalCost = function(){
-  return this.items
+  sum = 0
+  for (i = 0; i < this.items.length; i++){
+    const item = this.items[i];
+    sum+=item.unitPrice * (item.quantity)
+    // console.log(sum);
+  
+  }
+  return sum
 }
 
 Order.prototype.updateOrderStatus = function(){
-  if(this.status.includes("successful")){
-    console.log("hhh");
+  if(this.status.includes("Successful")){
+    console.log(`${this.customer.name}, your order has been received`);
   }
   else{
-    console.log("kk");
+    console.log("Failed delivery");
     
   }
 
 }
 
 Order.prototype.categorize = function(){
+  switch(this.status){
+    case "Successful delivery":
+      return "Not urgent";
+    case "Unsuccessful delivery":
+      return "Very urgent";
+    default:
+      return "Not identified"  
+      
+  }
 
 }
-const order = new Order(
+const order =[ new Order(
   {name: "Lloyd", email: "Lloyd@gmail.com"},
-  [{productName: "butter", quantity: 20, unitPrice: 200},
-    {productName: "butter", quantity: 20, unitPrice: 200},
-    {productName: "butter", quantity: 20, unitPrice: 200},
-    {productName: "butter", quantity: 20, unitPrice: 200},
+  [ {productName: "butter", quantity: 14, unitPrice: 200},
+    {productName: "honey", quantity: 20, unitPrice: 300},
+    {productName: "jam", quantity: 35, unitPrice: 250},
+    {productName: "margarine", quantity: 20, unitPrice: 150},
 
-  ]
-)
+  ],
+  "Successful delivery"
+),
+new Order(
+  {name: "Lena", email: "Lena@gmail.com"},
+  [ {productName: "butter", quantity: 8, unitPrice: 200},
+    {productName: "honey", quantity: 20, unitPrice: 300},
+    {productName: "jam", quantity: 12, unitPrice: 250},
+    {productName: "margarine", quantity: 20, unitPrice: 150},
 
+  ],
+  "Unsuccessful delivery"
+)]
+order.forEach(orders => console.log(orders.updateOrderStatus()))
+order.forEach(orders => console.log(orders.computeTotalCost()))
+order.forEach(orders => console.log(orders.categorize()))
 // //In a startup’s employee review tool, design an Employee class with properties: id (number), name (string), performanceMetrics 
 // //(object with keys like communication, efficiency, and reliability), and feedback (array of strings), then use prototypes to 
 // //calculate an average score, classify performance level using control flow, and add new feedback based on conditions.
@@ -232,7 +261,7 @@ Course.prototype.completed = function(){
 
 }
 Course.prototype.enrolled = function(expertise){
-return this.students.filter(Course => this.instructor.expertise === expertise).length
+return this.students.filter(student => this.instructor.expertise === expertise).length
 }
 Course.prototype.message = function(){
   if(this.students.length > 5){
