@@ -4,6 +4,8 @@
 //a method toggleFeature(flag) to enable or disable the feature, and simulate access attempts using if-else and switch 
 //statements for different roles.
 
+const { it } = require("node:test");
+
 
 
 function FeatureToggle(featureName, isEnabled, userGroupAccess) {
@@ -14,23 +16,60 @@ function FeatureToggle(featureName, isEnabled, userGroupAccess) {
 }
 
 FeatureToggle.prototype.canAccess = function(userRole){
+let whoCanAccess = this.isEnabled && this.userGroupAccess.includes(userRole)
 
+console.log(whoCanAccess);
 
+return whoCanAccess
 }
 FeatureToggle.prototype.toggleFeature = function(flag){
+  this.isEnabled = flag;
+   
   
 }
 
+const feature = new FeatureToggle("feature","true",["betaTesters", "admins"])
+
+console.log(feature.isEnabled);
+
+
+let userRole = "admins"
+
+switch (userRole){
+  case "admins":
+  case "betaTesters":
+    if (feature.canAccess(userRole)){
+      console.log("Access granted");
+      
+    }else{
+      console.log("feature not enabled");
+      
+    }
+    break;
+    default:
+      console.log("Access denied");
+      
+}
 
 //In a freelancer time-tracking platform, create a TimeLog constructor function with properties: freelancerName 
 //(string), projectDetails (object with name and hourlyRate), and logs (array of objects with date, hoursWorked), 
 //then add prototype methods to calculate total earnings, filter logs by date range, and determine if weekly hours exceed 40 using if-else logic.
+function Timelog(freeLancerName,projectDetails,logs){
+  this.freeLancerName = freeLancerName
+  this.projectDetails = projectDetails
+  this.logs = logs
+}
 
 
 //You are developing a startup’s order management system where an Order constructor function should contain customer (object with 
 //name and email), items (array of objects with productName, quantity, and unitPrice), and status (string), then implement prototype methods 
 //to compute total cost, update order status based on payment, and categorize order urgency using switch and conditional statements.
+function Order(customer,items,status){
+  this.customer = customer
+  this.items = items
+  this.status = status
 
+}
 
 //In a startup’s employee review tool, design an Employee class with properties: id (number), name (string), performanceMetrics 
 //(object with keys like communication, efficiency, and reliability), and feedback (array of strings), then use prototypes to 
@@ -51,7 +90,7 @@ class Employees{
     // let count = 0
   
     const values =  Object.values(this.performanceMetrics)
-    console.log(this.performanceMetrics);
+    // console.log(this.performanceMetrics);
     
     let sum = 0;
     // if (values.length === 0){
@@ -61,12 +100,12 @@ class Employees{
     // const sum = values.reduce((acc, curr) => acc + curr, 0);
       sum += values[i];
       // count++;
-      console.log({sum});
-      console.log(values.length)
+      // console.log({sum});
+      // console.log(values.length)
     
     let avg = values.length > 0 ? sum/values.length : 0;
   
-    console.log({avg});
+    // console.log({avg});
   
   let comment;
     if (avg > 10) { 
@@ -111,3 +150,33 @@ class Employees{
 //and students (array of objects with name and completionStatus), then add prototype methods to return names of students who completed the course, 
 //count enrolled students by expertise area, and use control flow to output different messages for instructors with more or less than 5 students.
 
+class Course{
+  constructor(title,instructor,students){
+    this.title = title
+    this.instructor = instructor //object with name and expertise
+    this.students = students //array of objects with name and completionStatus
+  }
+}
+
+Course.prototype.completed = function(){
+  for (let i = 0; i > this.students.length; i++){
+    const student = this.students[i];
+
+    if(student.name === "completed"){
+      return `${student.name} has successfully completed the course`
+    }
+
+    console.log({student});
+    
+  }
+
+
+}
+
+const studentCourse = new Course(
+  "mathematics",
+  {name: "Mr.John", expertise: "calculus"},
+  [{name: "Joy", completionStatus: "completed"},{name: "Andrews", completionStatus: "not completed"}]
+)
+
+// console.log(studentCourse.completed());
