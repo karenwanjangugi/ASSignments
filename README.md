@@ -2,6 +2,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 # ASSignments
 =======
 # async-functions
@@ -15,3 +16,6 @@
 =======
 # Classes-assignment.
 >>>>>>> Classes-assignment./main
+=======
+# Javascript-ass.
+>>>>>>> Javascript-ass./main
